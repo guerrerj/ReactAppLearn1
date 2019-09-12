@@ -1,9 +1,11 @@
 import React from 'react';
+import Home from './HomeComponent';
 import Menu from './MenuComponents';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'; 
 import DishDetail from './DishdetailComponent';
 import {DISHES} from '../shared/dishes';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 class Main extends React.Component{
   constructor(props) 
@@ -11,19 +13,24 @@ class Main extends React.Component{
     super(props);
     this.state = {
       dishes: DISHES, // doesnt receive any props but has the dishes 
-      selectedDish: null
     }; 
   } // can pass data as props using curly braces 
-  onDishSelect = (dishId) => { // Only tracking dish id not entire dish
-      this.setState({selectedDish:dishId}); 
-  }; 
-
+ 
   render() {
-    return (
+    //funtion component inline or explicit
+    const HomePage = () => {
+      return (
+        <Home/>
+      );
+    }
+    return (//use exact for path matching, menu component to use props needs inline function
       <div className="App">
         <Header/> 
-        <Menu dishes={this.state.dishes} onClick={this.onDishSelect}/> 
-        <DishDetail dish={this.state.dishes.filter((dish)=>dish.id === this.state.selectedDish)[0]}/>
+        <Switch>
+          <Route path="/home" component={HomePage}/>
+          <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}/>
+          <Redirect to="/home" />
+        </Switch>
         <Footer/>
       </div>
     );// Filter function gives elements for which the property matches as an array
