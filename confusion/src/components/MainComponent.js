@@ -33,6 +33,14 @@ class Main extends React.Component{
         />
       );
     }
+    //Will get parameter that is required, only interested in match
+    const DishWithId = ({match}) =>{
+      return(
+        <DishDetail dish={this.state.dishes.filter((dish)=>dish.id === parseInt(match.params.dishId,10))[0]} 
+        //Converts string to integer parseInts() 
+        comments={this.state.comments.filter((comment)=> comment.dishId === parseInt(match.params.dishId,10))}/>
+      );
+    }
     return (//use exact for path matching, menu component to use props needs inline function
       <div className="App">
         <Header/> 
@@ -40,12 +48,13 @@ class Main extends React.Component{
           <Route path="/home" component={HomePage}/>
           <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}/>
           <Route exact path="/contactus" component={Contact}/>
+          <Route path="/menu/:dishId" component={DishWithId}/>
           <Redirect to="/home" />
         </Switch>
         <Footer/>
       </div>
     );// Filter function gives elements for which the property matches as an array
-  }  
+  }  // In order to prevent switch from going to both we use exact 
 }
 //Menu is self closing 
 export default Main;

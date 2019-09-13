@@ -4,7 +4,7 @@ import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle} from 'reacts
 function RenderCard({item}){
     return( // No element is returned if no designation, javascript in code jsx
         <Card>
-            <CardImg width="100%" scr={item.image} altl={item.name}/>
+            <CardImg width="100%" src={item.image} alt={item.name}/>
             <CardBody>
                 <CardTitle>{item.name}</CardTitle>
                 {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>:null}

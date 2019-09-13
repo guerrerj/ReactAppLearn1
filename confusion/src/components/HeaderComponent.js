@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron} from 'reactstrap';
-import {NavLink, BrowserRouter} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 // Navlink adds a tag and active if url matches 
 
 class Header extends Component{ //to collapse for small screen sizes use react strap component small
