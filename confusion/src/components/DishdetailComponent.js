@@ -141,8 +141,7 @@ function RenderComments({comments})
                 <CardBody>
                 {comm}
                 </CardBody>
-                </Card>
-                <CommentForm/>
+                </Card>       
 
             </div>
     );}
