@@ -5,6 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent'; 
 import Contact from './ContactComponent'; 
 import DishDetail from './DishdetailComponent';
+import About from './AboutComponent'; 
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {DISHES} from '../shared/dishes';
 import {COMMENTS} from '../shared/comments';
@@ -41,6 +42,7 @@ class Main extends React.Component{
         comments={this.state.comments.filter((comment)=> comment.dishId === parseInt(match.params.dishId,10))}/>
       );
     }
+    // Route links the path to the component being mentioned 
     return (//use exact for path matching, menu component to use props needs inline function
       <div className="App">
         <Header/> 
@@ -49,6 +51,7 @@ class Main extends React.Component{
           <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}/>
           <Route exact path="/contactus" component={Contact}/>
           <Route path="/menu/:dishId" component={DishWithId}/>
+          <Route exact path='/aboutus' component={()=><About leaders={this.state.leaders}/>}/>
           <Redirect to="/home" />
         </Switch>
         <Footer/>
