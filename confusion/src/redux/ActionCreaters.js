@@ -22,7 +22,7 @@ export const postComment= (dishId, rating, author, comment) =>(dispatch)=>{
             'Content-Type': 'application/json'
         },
         credentials: 'same-origin'
-    })
+         })
         .then(response=>{
             if(response.ok){
                 return response;// Return the response if it is ok from the server 
@@ -37,8 +37,7 @@ export const postComment= (dishId, rating, author, comment) =>(dispatch)=>{
         })
         .then(response=>response.json())
         .then(response => dispatch(addComment(response))) // Includes the updated comment that is sent back
-        .catch(error =>{console.log('Post Comments', error.message), alert('Your comment could not be posted\n'+
-            'Error:' + error.message)})
+        .catch(error =>{alert('Your comment could not be posted\n'+error.message)});
 
 }
 export const fetchComments = () => (dispatch) => {

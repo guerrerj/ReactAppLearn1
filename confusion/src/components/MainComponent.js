@@ -10,7 +10,7 @@ import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'; 
 import {postComment, fetchDishes, fetchComments, fetchPromotions} from '../redux/ActionCreaters';
 import {actions} from 'react-redux-form';
-import {baseUrl} from '../shared/baseUrl';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const mapStateToProps = state =>{
     return(
@@ -73,8 +73,10 @@ class Main extends React.Component{
     }
     // Route links the path to the component being mentioned 
     return (//use exact for path matching, menu component to use props needs inline function
-      <div className="App">
+      <div>
         <Header/> 
+        <TransitionGroup>
+          <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
         <Switch>
           <Route path="/home" component={HomePage}/>
           <Route exact path="/menu" component={()=><Menu dishes={this.props.dishes.dishes}/>}/>
@@ -83,8 +85,10 @@ class Main extends React.Component{
           <Route exact path='/aboutus' component={()=><About leaders={this.props.leaders}/>}/>
           <Redirect to="/home" />
         </Switch>
+        </CSSTransition>
+        </TransitionGroup>
         <Footer/>
-      </div>
+      </div> 
     );// Filter function gives elements for which the property matches as an array
   }  // In order to prevent switch from going to both we use exact 
 }
