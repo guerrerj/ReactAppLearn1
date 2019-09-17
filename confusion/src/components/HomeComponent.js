@@ -23,7 +23,7 @@ function RenderCard({item, isLoading, errMess}){
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
             <Card>
-                <CardImg src={baseUrl + item.image} alt={item.name}/>
+                <CardImg width="100%" src={baseUrl + item.image} alt={item.name}/>
                 <CardBody>
                     <CardTitle>{item.name}</CardTitle>
                     {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>:null}
@@ -36,18 +36,18 @@ function RenderCard({item, isLoading, errMess}){
 function Home(props){
     return(// Render featured in home container, m1 is margin 1
         <div className="container">
-            <div className="row align-items-start">
-                <div className="col-12 col-md m-1">
+            <div className="row row-content">
+                <div className="col-md-4">
                     <RenderCard item={props.dish} 
                     isLoading={props.dishesLoading}
                     errMess={props.dishesErrMess}/>
                 </div>
-                <div className="col-12 col-md m-1">
+                <div className="col-md-4">
                     <RenderCard item={props.promotion}
                     isLoading={props.promotionsLoading}
                     errMess={props.promotionsErrMess}/>
                 </div>
-                <div className="col-12 col-md m-1">
+                <div className="col-md-4">
                     <RenderCard item={props.leader}/>
                 </div>
           </div>

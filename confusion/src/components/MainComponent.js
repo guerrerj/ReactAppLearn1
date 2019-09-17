@@ -14,63 +14,62 @@ import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const mapStateToProps = state =>{
     return(
-      {
-        dishes: state.dishes,
-        comments: state.comments,
-        promotions: state.promotions,
-        leaders: state.leaders 
-      }
-    );
-}
+            {
+              dishes: state.dishes,
+              comments: state.comments,
+              promotions: state.promotions,
+              leaders: state.leaders 
+            }
+          );
+    }
 
-// Action creator returns action object given to dispatch which can then be used by components
+  // Action creator returns action object given to dispatch which can then be used by components
 const mapDispatchToProps = (dispatch) => ({
-    postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment))
-    ,fetchDishes: () => {dispatch(fetchDishes())} 
-    ,resetFeedbackForm:()=>{dispatch(actions.reset('feedback'))}
-    ,fetchPromotions: () => {dispatch(fetchPromotions())} 
-    ,fetchComments: () => {dispatch(fetchComments())} 
-
-  });
+      postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment))
+      ,fetchDishes: () => {dispatch(fetchDishes())} 
+      ,resetFeedbackForm:()=>{dispatch(actions.reset('feedback'))}
+      ,fetchPromotions: () => {dispatch(fetchPromotions())} 
+      ,fetchComments: () => {dispatch(fetchComments())} 
+    });
 
 class Main extends React.Component{
-  constructor(props) {
-    super(props);
-  } 
 
-  // loading dishes to store at point where the main mounts 
- componentDidMount(){
-   this.props.fetchDishes();
-   this.props.fetchComments();
-   this.props.fetchPromotions(); 
- }
+        // loading dishes to store at point where the main mounts 
+    componentDidMount()
+      {
+        this.props.fetchDishes();
+        this.props.fetchComments();
+        this.props.fetchPromotions(); 
+      }
  
   render() {
     //funtion component inline or explicit
-    const HomePage = () => {
-      return (// use array filter in javascript
-        <Home dish={this.props.dishes.dishes.filter((dish)=>dish.featured)[0]}
-        dishesLoading={this.props.dishes.isLoading}
-        dishesErrMess={this.props.dishes.errMess} 
-        promotion={this.props.promotions.promotions.filter((promo)=>promo.featured)[0]}
-        promotionsLoading={this.props.promotions.isLoading}
-        promotionsErrMess={this.props.promotions.errMess} 
-        leader={this.props.leaders.filter((leader)=>leader.featured)[0]}
-        />
-      );
-    }
+    const HomePage = () => 
+                  {
+                    return (// use array filter in javascript
+                      <Home dish={this.props.dishes.dishes.filter((dish)=>dish.featured)[0]}
+                      dishesLoading={this.props.dishes.isLoading}
+                      dishesErrMess={this.props.dishes.errMess} 
+                      promotion={this.props.promotions.promotions.filter((promo)=>promo.featured)[0]}
+                      promotionsLoading={this.props.promotions.isLoading}
+                      promotionsErrMess={this.props.promotions.errMess} 
+                      leader={this.props.leaders.filter((leader)=>leader.featured)[0]}
+                      />
+                    );
+                  }
     //Will get parameter that is required, only interested in match
-    const DishWithId = ({match}) =>{
-      return(
-        <DishDetail dish={this.props.dishes.dishes.filter((dish)=>dish.id === parseInt(match.params.dishId,10))[0]} 
-        //Converts string to integer parseInts() 
-        isLoading={this.props.dishes.isLoading}
-        errMess={this.props.dishes.errMess} 
-        comments={this.props.comments.comments.filter((comment)=> comment.dishId === parseInt(match.params.dishId,10))}
-        commentsErrMess={this.props.comments.errMess}
-        postComment={this.props.postComment}/>
-      );
-    }
+    const DishWithId = ({match}) =>
+                {
+                  return(
+                    <DishDetail dish={this.props.dishes.dishes.filter((dish)=>dish.id === parseInt(match.params.dishId,10))[0]} 
+                    //Converts string to integer parseInts() 
+                    isLoading={this.props.dishes.isLoading}
+                    errMess={this.props.dishes.errMess} 
+                    comments={this.props.comments.comments.filter((comment)=> comment.dishId === parseInt(match.params.dishId,10))}
+                    commentsErrMess={this.props.comments.errMess}
+                    postComment={this.props.postComment}/>
+                  );
+                }
     // Route links the path to the component being mentioned 
     return (//use exact for path matching, menu component to use props needs inline function
       <div>

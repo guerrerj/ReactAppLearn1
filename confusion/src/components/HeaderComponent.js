@@ -43,10 +43,10 @@ class Header extends Component{ //to collapse for small screen sizes use react s
             <>
             <Navbar dark expand="md">
             <div className="container">
-                <NavbarToggler onClick={this.toggleNav}/>
                 <NavbarBrand className="mr-auto" href="/"><img src="assets/images/logo.png" height="30" width="41" 
-                alt="Le Confusion"/>
-                </NavbarBrand>
+                alt="Le Confusion"/></NavbarBrand>
+                <NavbarToggler onClick={this.toggleNav}/>
+
                 <Collapse isOpen={this.state.isNavOpen} navbar>
                 <Nav navbar>
                     <NavItem>
@@ -56,25 +56,29 @@ class Header extends Component{ //to collapse for small screen sizes use react s
                     </NavItem>
                     <NavItem>
                         <NavLink className="nav-link" to="/aboutus">
-                            <span className="fa fa-info fa-lg"></span> About Us
+                            <span className="fa fa-info fa-lg"></span>
+                            About Us
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink className="nav-link" to="/menu">
-                            <span className="fa fa-list fa-lg"></span> Menu
+                            <span className="fa fa-list fa-lg"></span>
+                            Menu
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink className="nav-link" to="/contactus">
-                            <span className="fa fa-address-card fa-lg"></span> Contact Us
+                            <span className="fa fa-address-card fa-lg"></span>
+                            Contact Us
                         </NavLink>
                     </NavItem>
                 </Nav>
-                <Nav className="ml-auto" navbar>
+
+                <Nav navbar>
                     <NavItem>
                         <Button outline onClick={this.toggleModal}>
                             <span className="fa fa-sign-in fa-lg">
-                                Login
+                              Login
                             </span>
                         </Button>
                     </NavItem>
